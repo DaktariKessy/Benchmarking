@@ -1,0 +1,67 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.bak
+.pytest_cache/
+.mypy_cache/
+
+# Virtual environments
+venv/
+env/
+.venv/
+*_env/
+unik3d_env/
+
+# Model weights and checkpoints
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+*.onnx
+*.engine
+*.bin
+
+# Dataset: keep metadata in GitHub, host large ROS bags separately
+Data/*
+!Data/1m/
+!Data/1.5m/
+
+Data/1m/*
+!Data/1m/metadata.yaml
+
+Data/1.5m/*
+!Data/1.5m/metadata.yaml
+# Model directories: exclude contents but retain README files
+Models/*/
+!Models/*/
+Models/*/**
+!Models/*/README.md
+
+# Output and generated results
+Output/*
+!Output/README.md
+
+# Build files
+build/
+install/
+log/
+*.o
+*.so
+*.a
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.log
+# Keep equilib; exclude other local tools
+Tools/*
+!Tools/equilib/
+Tools/equilib/__pycache__/
