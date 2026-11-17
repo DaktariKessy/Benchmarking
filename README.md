@@ -33,51 +33,44 @@ For additional functionality:
 
 ## 2. Download the models
 
-Download the pretrained weights for the following models:
+Clone each model's repository and fetch its pretrained weights, then place the
+code and checkpoints in the corresponding directory inside `Models/`.
 
-- UniK3D
-- UniDepth V2
-- MoGe-2
-- Metric3D V2
-- UniDAC
-- Video Depth Anything
-- Depth Pro
+| Model | Repository | Checkpoint source |
+|---|---|---|
+| UniDepth V2 | https://github.com/lpiccinelli-eth/UniDepth | `lpiccinelli/unidepth-v2-vit{s,b,l}14` (Hugging Face) |
+| UniK3D | https://github.com/lpiccinelli-eth/UniK3D | `lpiccinelli/unik3d-vit{s,b,l}` (Hugging Face) |
+| MoGe-2 | https://github.com/microsoft/MoGe | `Ruicheng/moge-2-vit{s,b}-normal`, `Ruicheng/moge-2-vitl` |
+| Metric3D V2 | https://github.com/YvanYin/Metric3D | Release checkpoints; the variant must match the configuration |
+| Video Depth Anything | https://github.com/DepthAnything/Video-Depth-Anything | Official release checkpoints |
+| Depth Pro | https://github.com/apple/ml-depth-pro | Apple release checkpoint |
+| UniDAC | https://girish1511.github.io/UniDAC/ | See project page; set `"pretrained": null` in `configs/test/*.json` |
 
-Place each downloaded model and its required checkpoints in the corresponding directory inside `Models/`.
-
-### Model checkpoint sources
-
-| Model | Checkpoint source |
-|---|---|
-| UniDepth V2 | `lpiccinelli/unidepth-v2-vit{s,b,l}14` (Hugging Face) |
-| UniK3D | `lpiccinelli/unik3d-vit{s,b,l}` (Hugging Face) |
-| MoGe-2 | `Ruicheng/moge-2-vit{s,b}-normal`, `Ruicheng/moge-2-vitl` |
-| Metric3D V2 | Checkpoint files; the variant must match the configuration. |
-| Depth Pro | Apple release checkpoint. |
-| Video Depth Anything | Official release checkpoints. |
-| UniDAC | `configs/test/*.json`; set `"pretrained": null`. |
-
-Refer to the original model repositories for checkpoint downloads and licensing information.
+Refer to the original repositories for licensing information.
 
 ## 3. Download the dataset
 
 Download the ROS 2 bag datasets from Zenodo:
 
-**Dataset DOI / Zenodo link:** To be added after publication.
+[huggingface.co/datasets/kibteff/mmde-benchmark](https://huggingface.co/datasets/kibteff/mmde-benchmark)
 
 The dataset contains two recording directories:
 
-```text
 Data/
+├── 0.51m/
+│   ├── 0.51m_0.db3
+│   └── metadata.yaml
 ├── 1m/
 │   ├── 1m_0.db3
 │   └── metadata.yaml
 └── 1.5m/
     ├── 1.5m_0.db3
     └── metadata.yaml
-```
 
 Download each bag and place it in its corresponding directory. Keep the `metadata.yaml` file alongside the bag.
+```bash
+hf download kibteff/mmde-benchmark --repo-type dataset --local-dir Data/
+```
 
 ### Required input data
 
@@ -163,3 +156,25 @@ The output files are generated automatically during evaluation.
 - Use Python 3.10 with the ROS 2 Humble environment.
 - The `--display` option requires an available graphical display.
 - Check the original model repositories for their respective licences and checkpoint requirements.
+
+## Citation
+
+If you use this code or dataset, please cite:
+
+> S. Kessy, M. D'Haene, A. Andre, G. Caron.
+> "Benchmarking Monocular Metric Depth Estimation Models for Robotics:
+> Potential and Limitations."
+> IEEE/SICE International Symposium on System Integration (SII),
+> Kobe, Japan, January 2027.
+
+```bibtex
+@inproceedings{kessy2027benchmarking,
+  title     = {Benchmarking Monocular Metric Depth Estimation Models for
+               Robotics: Potential and Limitations},
+  author    = {Kessy, S. and D'Haene, M. and Andre, A. and Caron, G.},
+  booktitle = {IEEE/SICE International Symposium on System Integration (SII)},
+  address   = {Kobe, Japan},
+  month     = jan,
+  year      = {2027}
+}
+```
